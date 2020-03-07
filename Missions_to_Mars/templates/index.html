@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Mission to Mars</h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+        </div>
+        <div class="row">
+            <div class="col col-12">
+                <h2>Latest Mars News</h2>
+                <h3>Headline: {{mars_data.news_title}}</h3>
+                {{mars_data.news_p}}
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-8">
+                <h3>Featured Mars Image</h3>
+                <img src={{mars_data.featured_image_url}} alt="Featured image">
+            </div>
+            <div class="col col-4">
+                <div class="boxborder">
+                    <h3>Current Weather on Mars</h3>
+                    {{mars_data.mars_weather}}
+                </div>
+                <br>
+                <h3>Mars Facts</h3>
+                {{mars_data.mars_facts | safe}}
+            </div>
+            <hr>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col col-12">
+                <h3>Mars Hemispheres</h3>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            {% for image_url in  mars_data.hemisphere_image_urls %}
+            <div class="col col-6">
+                <div class="boxmargin">
+                    <img src={{image_url.img_url}} alt={{image_url.img_url}} width=100%>
+                    <h3>{{image_url.title}}</h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
